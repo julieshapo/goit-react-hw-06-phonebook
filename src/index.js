@@ -4,7 +4,7 @@ import { App } from 'components/App/App';
 import { ThemeProvider } from 'styled-components';
 import { Provider } from 'react-redux';
 import { store } from 'redux/store';
-import { GlobalStyle } from '../GlobalStyle';
+import { GlobalStyle } from '../src/components/GlobalStyle';
 
 const theme = {
   colors: {

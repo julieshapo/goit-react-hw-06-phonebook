@@ -1,5 +1,7 @@
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contacts/contactsSlice';
+
 import { Formik } from 'formik';
-// import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
 import {
   FormLabel,
@@ -25,7 +27,9 @@ const ContactScheme = Yup.object().shape({
     .required('Required!'),
 });
 
-export const ContactForm = ({ onAdd }) => {
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+
   return (
     <div>
       <Title>Phonebook</Title>
@@ -33,17 +37,17 @@ export const ContactForm = ({ onAdd }) => {
         initialValues={{ name: '', number: '' }}
         validationSchema={ContactScheme}
         onSubmit={(values, actions) => {
-          onAdd(values, values.name);
+          dispatch(addContact(values, values.name));
           actions.resetForm();
         }}
       >
-        <Form action="">
-          <FormLabel htmlFor="">
+        <Form>
+          <FormLabel>
             Name
             <Field name="name" placeholder="Jane Smith" />
             <ErrorMessage name="name" component="span" />
           </FormLabel>
-          <FormLabel htmlFor="">
+          <FormLabel>
             Number
             <Field name="number" placeholder="111-11-11" />
             <ErrorMessage name="number" component="span" />
@@ -54,3 +58,25 @@ export const ContactForm = ({ onAdd }) => {
     </div>
   );
 };
+
+// basic approach
+
+// const newContact = e => {
+//   e.preventDefault();
+
+//   const name = e.currentTarget.elements.name.value;
+//   const number = e.currentTarget.elements.number.value;
+
+//   dispatch(addContact({ name, number }));
+//   e.currentTarget.reset();
+// };
+
+/* <form onSubmit={newContact}>
+        <label>
+          <input type="text" name="name" placeholder="Princess Leia" />
+        </label>
+        <label>
+          <input type="text" name="number" placeholder="111-11-11" />
+        </label>
+        <button type="submit">Add contact</button>
+      </form> */

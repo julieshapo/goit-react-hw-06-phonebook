@@ -1,15 +1,18 @@
 import PropTypes from 'prop-types';
 import { Contact } from 'components/Contact/Contact';
-import { Container } from './ContactsList.styled';
+import { Container } from './ContactList.styled';
+import { useSelector } from 'react-redux';
 
-export const ContactsList = ({ contacts, onDelete }) => {
+export const ContactsList = () => {
+  const contacts = useSelector(state => state.contacts.initContacts);
+
   return (
     <Container>
       <h2>Contacts</h2>
       <ul>
         {contacts.map(contact => (
           <li key={contact.id}>
-            <Contact contact={contact} onDelete={onDelete} />
+            <Contact contact={contact} />
           </li>
         ))}
       </ul>
