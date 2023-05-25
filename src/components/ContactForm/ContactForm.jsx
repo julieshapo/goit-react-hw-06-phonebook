@@ -59,7 +59,7 @@ export const ContactForm = () => {
   );
 };
 
-// basic approach
+// BASIC FORM VARIANT
 
 // const newContact = e => {
 //   e.preventDefault();
