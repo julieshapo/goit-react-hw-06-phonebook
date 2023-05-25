@@ -1,5 +1,6 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 import initialContacts from '../../components/contacts.json';
+import toast from 'react-hot-toast';
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -8,8 +9,15 @@ const contactsSlice = createSlice({
   },
   reducers: {
     addContact(state, action) {
-      console.log(state);
-      console.log(action);
+      // console.log(state);
+      // console.log(action);
+
+      if (
+        state.initContacts.find(contact => contact.name === action.payload.name)
+      ) {
+        toast.error(`${action.payload.name} is already in contacts.`);
+        return;
+      }
 
       state.initContacts.push({
         id: nanoid(),
@@ -18,11 +26,10 @@ const contactsSlice = createSlice({
       });
     },
     deleteContact(state, action) {
-      state.initContacts = state.contacts.filter(
+      state.initContacts = state.initContacts.filter(
         contact => contact.id !== action.payload.id
       );
     },
-    findContact(state, action) {},
   },
 });
 
