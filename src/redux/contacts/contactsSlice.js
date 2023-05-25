@@ -9,9 +9,6 @@ const contactsSlice = createSlice({
   },
   reducers: {
     addContact(state, action) {
-      // console.log(state);
-      // console.log(action);
-
       if (
         state.initContacts.find(contact => contact.name === action.payload.name)
       ) {
