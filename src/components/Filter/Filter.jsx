@@ -1,10 +1,11 @@
 import { FilterField, Input } from './Filter.styled';
-import { findContact, getFilter } from '../../redux/filter/filterSlice';
+import { findContact } from '../../redux/filter/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectFilter } from '../../redux/selectors';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
 
   const name = e => {
     dispatch(findContact(e.currentTarget.value.toLowerCase()));

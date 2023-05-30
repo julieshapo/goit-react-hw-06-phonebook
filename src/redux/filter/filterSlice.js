@@ -4,7 +4,7 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState: '',
   reducers: {
-    findContact(state, action) {
+    findContact(_, action) {
       return action.payload;
     },
   },
@@ -13,6 +13,3 @@ const filterSlice = createSlice({
 export const { findContact } = filterSlice.actions;
 
 export default filterSlice.reducer;
-
-// Selector
-export const getFilter = state => state.filter;
